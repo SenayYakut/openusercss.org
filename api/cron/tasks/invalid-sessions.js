@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken'
 import Task from '../task'
+import iterator from 'api/lib/db-iterator'
 import log from 'chalk-console'
 
 import {Session,} from 'api/db/schema/session'
@@ -16,28 +17,25 @@ export default class InvalidSessions extends Task {
 
   async run () {
     const config = await staticConfig()
-    const sessions = await Session.find({})
-    const deletes = []
 
-    sessions.forEach((session) => {
+    return iterator({
+      'collection': Session,
+      'populate':   null,
+    }, async (session) => {
       try {
-        log.info(`Verifying session ${session._id}`)
         jwt.verify(session.token, config.get('keypair.clientprivate'), {
           'issuer':     config.get('domain'),
           'algorithms': [
             'HS256',
           ],
         })
-        log.info(`${session._id} valid`)
-      } catch (error) {
-        log.info(`${session._id} invalid, deleting`)
-        deletes.push(session.remove())
-      }
-    })
 
-    return Promise.all(deletes).then((result) => {
-      log.info(`Deleted ${deletes.length} invalid sessions`)
-      return result
+        log.info(`Session ${session.id} valid`)
+        return true
+      } catch (error) {
+        log.info(`Session ${session.id} invalid, deleting`)
+        return session.remove()
+      }
     })
   }
 }
