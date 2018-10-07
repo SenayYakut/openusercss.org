@@ -9411,6 +9411,12 @@ mamacro@^0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/mamacro/-/mamacro-0.0.3.tgz#ad2c9576197c9f1abf308d0787865bd975a3f3e4"
 
+map-age-cleaner@^0.1.1:
+  version "0.1.2"
+  resolved "https://registry.yarnpkg.com/map-age-cleaner/-/map-age-cleaner-0.1.2.tgz#098fb15538fd3dbe461f12745b0ca8568d4e3f74"
+  dependencies:
+    p-defer "^1.0.0"
+
 map-cache@^0.2.0, map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -9581,12 +9587,14 @@ mathjs@^3.16.4:
     tiny-emitter "2.0.2"
     typed-function "0.10.7"
 
-matomo-reporting-js@^1:
+"matomo-reporting-js@https://github.com/DecentM/matomo-reporting-js":
   version "1.2.0"
-  resolved "https://registry.yarnpkg.com/matomo-reporting-js/-/matomo-reporting-js-1.2.0.tgz#6a0c925a9e017f14190b7f521f4888e95ea7be02"
+  resolved "https://github.com/DecentM/matomo-reporting-js#fe104c4ad0eaced379eace318d56f0b07fd5c6ea"
   dependencies:
+    p-memoize "^2.1.0"
     pify "^3.0.0"
     querystring "^0.2.0"
+    quick-lru "^1.1.0"
     superstruct "^0.5.4"
 
 md-shadows@^1:
@@ -9649,6 +9657,14 @@ mem@^1.1.0:
   resolved "https://registry.yarnpkg.com/mem/-/mem-1.1.0.tgz#5edd52b485ca1d900fe64895505399a0dfa45f76"
   dependencies:
     mimic-fn "^1.0.0"
+
+mem@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/mem/-/mem-4.0.0.tgz#6437690d9471678f6cc83659c00cbafcd6b0cdaf"
+  dependencies:
+    map-age-cleaner "^0.1.1"
+    mimic-fn "^1.0.0"
+    p-is-promise "^1.1.0"
 
 memory-fs@^0.4.0, memory-fs@^0.4.1, memory-fs@~0.4.1:
   version "0.4.1"
@@ -10844,9 +10860,23 @@ overwrite-object@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/overwrite-object/-/overwrite-object-1.0.5.tgz#10b1837bba2f49032334a748dd6140fc9d658904"
 
+p-all@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p-all/-/p-all-1.0.0.tgz#93bdf53a55a23821fdfa98b4174a99bf7f31df8d"
+  dependencies:
+    p-map "^1.0.0"
+
+p-defer@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
+
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
+
+p-is-promise@^1.1.0:
+  version "1.1.0"
+  resolved "http://registry.npmjs.org/p-is-promise/-/p-is-promise-1.1.0.tgz#9c9456989e9f6588017b0434d56097675c3da05e"
 
 p-limit@^1.1.0:
   version "1.3.0"
@@ -10860,9 +10890,16 @@ p-locate@^2.0.0:
   dependencies:
     p-limit "^1.1.0"
 
-p-map@^1.1.1:
+p-map@^1.0.0, p-map@^1.1.1:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/p-map/-/p-map-1.2.0.tgz#e4e94f311eabbc8633a1e79908165fca26241b6b"
+
+p-memoize@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/p-memoize/-/p-memoize-2.1.0.tgz#9ac80c8cf9373c52dfece6aae1fd2e300602898a"
+  dependencies:
+    mem "^4.0.0"
+    mimic-fn "^1.0.0"
 
 p-pipe@^1.1.0:
   version "1.2.0"
@@ -12475,7 +12512,7 @@ querystring@0.2.0, querystring@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
-quick-lru@^1.0.0:
+quick-lru@^1.0.0, quick-lru@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/quick-lru/-/quick-lru-1.1.0.tgz#4360b17c61136ad38078397ff11416e186dcfbb8"
 

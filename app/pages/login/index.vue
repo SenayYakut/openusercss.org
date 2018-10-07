@@ -16,17 +16,12 @@
     },
     'methods': {
       async login () {
-        const valid = await this.$validator.validateAll()
-
-        if (valid) {
-          try {
-            await this.$store.dispatch('session/login', this.loginData)
-            this.$router.push({
-              'path': '/',
-            })
-          } catch (error) {
-            this.$toast.error(error.message, 'Error')
-          }
+        try {
+          await this.$store.dispatch('session/login', this.loginData)
+          this.$router.push('/')
+        } catch (error) {
+          console.error(error)
+          this.$toast.error(error.message, 'Error')
         }
       },
     },

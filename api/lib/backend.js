@@ -4,7 +4,6 @@ import fetch from 'node-fetch'
 import raven from 'raven'
 import {Agent,} from 'https'
 
-import log from 'chalk-console'
 import pify from 'pify'
 import staticConfig from 'lib/config'
 import jwt from 'jsonwebtoken'
@@ -25,6 +24,11 @@ const matomo = new MatomoApi({
 }, {
   'endpoint': 'https://pwk.decentm.com/index.php',
   'idSite':   10,
+  'cache':    {
+    // One hour
+    'maxAge':  3600000,
+    'maxSize': 100,
+  },
 })
 
 const getViewer = async (token, {User,}) => {

@@ -8,15 +8,15 @@ import verifyTokenQuery from '~/apollo/queries/verify-token.gql'
 const validators = {}
 
 validators.user = struct({
-  'id':            'string',
-  'displayname':    'string',
+  'id':             'string',
+  'display':        'string',
   'username':       'string',
   'avatarUrl':      'string',
   'smallAvatarUrl': 'string',
-  'lastSeen':       'string',
+  'lastSeenAt':     'string',
   'lastSeenReason': 'string',
   'createdAt':      'string',
-  'lastUpdate':     'string',
+  'updatedAt':      'string',
   'bio':            'string',
   'donationUrl':    'string',
   '__typename':     'string?',
@@ -26,13 +26,13 @@ validators.user = struct({
 
 validators.session = struct({
   '__typename': 'string?',
-  'id':        'string',
+  'id':         'string',
   'token':      'string',
   'ip':         'string',
   'ua':         'string',
   'expiresAt':  'string',
   'createdAt':  'string',
-  'user':       validators.user,
+  'createdBy':  validators.user,
 }, {
   '__typename': 'Session',
 })
@@ -108,6 +108,7 @@ export const actions = {
 
       commit('login', data.login)
       commit('loading', false)
+      return true
     } catch (error) {
       commit('loading', false)
       throw error

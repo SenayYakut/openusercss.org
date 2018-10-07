@@ -1,22 +1,22 @@
 mutation(
-  $email:    String!
+  $email:    EmailAddress!
   $password: String!
 ) {
-  login(
+  login(input: {
     email:    $email
     password: $password
-  ) {
-    _id
-    user {
-      _id
+  }) {
+    id
+    createdBy {
+      id
       username
-      displayname
+      display
       avatarUrl
       smallAvatarUrl
-      lastSeen
+      lastSeenAt
       lastSeenReason
       createdAt
-      lastUpdate
+      updatedAt
       bio
       donationUrl
     }
